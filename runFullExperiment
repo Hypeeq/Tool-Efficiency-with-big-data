@@ -1,0 +1,16 @@
+#!/bin/sh
+
+## This is a script that will run each of the requested techniques
+## in turn.  Each technique is run 5 times to obtain an average.
+
+DATAFILE=/home/courses/cis2520/data/uniprot_sprot-100000.fasta
+
+# This line causes the script to print out each command before running it
+set -x
+
+./llloadonly  -R 5 ${DATAFILE}
+
+./arraydouble -R 5 ${DATAFILE}
+./llheadtail  -R 5 ${DATAFILE}
+./llheadonly  -R 5 ${DATAFILE}
+
