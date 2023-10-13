@@ -6,7 +6,7 @@
 #include "fasta.h"
 
 // Define an initial size for the array of FASTA records
-#define INITIAL_RECORD_ARRAY_SIZE 100
+#define INITIAL_RECORD_ARRAY_SIZE 1
 
 void usage(char *progname)
 {
