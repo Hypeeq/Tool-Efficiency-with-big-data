@@ -67,28 +67,34 @@ processFasta(char *filename, double *timeTaken)
 }
 
 
-int processFastaRepeatedly(char *filename, long repeatsRequested) {
-    double timeThisIterationInSeconds;
-    double totalTimeInSeconds = 0;
-    int minutesPortion;
-    int status;
-    long i;
+int
+processFastaRepeatedly(
+		char *filename,
+		long repeatsRequested
+	)
+{
+	double timeThisIterationInSeconds;
+	double totalTimeInSeconds = 0;
+	int minutesPortion;
+	int status;
+	long i;
 
-    for (i = 0; i < repeatsRequested; i++) {
-        status = processFasta(filename, &timeThisIterationInSeconds);
-        if (status < 0) return -1;
-        totalTimeInSeconds += timeThisIterationInSeconds;
-    }
+	for (i = 0; i < repeatsRequested; i++) {
+		status = processFasta(filename, &timeThisIterationInSeconds);
+		if (status < 0)	return -1;
+		totalTimeInSeconds += timeThisIterationInSeconds;
+	}
 
-    printf("%lf seconds taken for processing total\n", totalTimeInSeconds);
+	printf("%lf seconds taken for processing total\n", totalTimeInSeconds);
 
-    totalTimeInSeconds /= (double) repeatsRequested;
+	totalTimeInSeconds /= (double) repeatsRequested;
 
-    minutesPortion = (int) (totalTimeInSeconds / 60);
-    totalTimeInSeconds = totalTimeInSeconds - (60 * minutesPortion);
-    printf("On average: %d minutes, %lf second per run\n", minutesPortion, totalTimeInSeconds);
+	minutesPortion = (int) (totalTimeInSeconds / 60);
+	totalTimeInSeconds = totalTimeInSeconds - (60 * minutesPortion);
+	printf("On average: %d minutes, %lf second per run\n",
+            minutesPortion, totalTimeInSeconds);
 
-    return status;
+	return status;
 }
 
 void usage(char *progname)
